@@ -1,0 +1,45 @@
+Generating workloads...
+Running simulations...
+
+Run 1/5...
+Run 2/5...
+Run 3/5...
+Run 4/5...
+Run 5/5...
+ALL STATISTICS FOR 5 ITERATIONS
+
+FIRST COME FIRST SERVE (FCFS):
+Average Turn Around Time(TAT) :34.5
+Average Wait Time(WT) : 28.9
+Average Response Time(RT) : 28.9
+Average Throughput :17.6
+
+SHORTEST JOB FIRST (SJF):
+Average Turn Around Time(TAT) :11.8
+Average Wait Time(WT) : 7.9
+Average Response Time(RT) : 7.9
+Average Throughput :25.4
+
+SHORTEST REMAINING TIME (SRT):
+Average Turn Around Time(TAT) :11.1
+Average Wait Time(WT) : 7.3
+Average Response Time(RT) : 6.5
+Average Throughput :25.6
+
+ROUND ROBIN (RR):
+Average Turn Around Time(TAT) :84.2
+Average Wait Time(WT) : 78.8
+Average Response Time(RT) : 5.5
+Average Throughput :18.4
+
+HIGHEST PRIORITY FIRST (HPF) [NON-PREEMPTIVE]:
+Average Turn Around Time(TAT) :16.8
+Average Wait Time(WT) : 11.4
+Average Response Time(RT) : 11.4
+Average Throughput :18.4
+
+HIGHEST PRIORITY FIRST (HPF) [PREEMPTIVE]:
+Average Turn Around Time(TAT) :20.3
+Average Wait Time(WT) : 15.2
+Average Response Time(RT) : 3.8
+Average Throughput :18.0
