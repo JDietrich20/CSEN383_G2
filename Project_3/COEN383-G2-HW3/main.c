@@ -2,14 +2,13 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include "customers.h"
+#include "simulation_utils.c"
 
 /*
 10 ticket sellers to 100 seats concert during one hour. Each ticket
 seller has their own queue for buyers.
 */
-//#define MAX_CUSTOMERS_PER_SELLER 20 // or get N from command line
-
-
+// #define MAX_CUSTOMERS_PER_SELLER 20 // or get N from command line
 
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -22,7 +21,7 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 // option-3: when creating the thread, pass a struct that includes the index “i” and seller_type
 // seller thread to serve one time slice (1 minute)
 
-//customer generation function for one seller
+// customer generation function for one seller
 void generateCustomers(Customer queue[], int N, char sellerType, int sellerNumber)
 {
     for (int i = 0; i < N; i++)
@@ -36,7 +35,6 @@ void generateCustomers(Customer queue[], int N, char sellerType, int sellerNumbe
 
         // Generate customer ID string
         sprintf(customer->customerID, "%c%d%02d", sellerType, sellerNumber, i + 1);
-        // Ex: "H101", "M205", "L304"
 
         // Random arrival time (0-59 minutes)
         customer->arrivalTime = rand() % 60;
@@ -78,7 +76,7 @@ void generateCustomers(Customer queue[], int N, char sellerType, int sellerNumbe
     }
 }
 
-// Test function - prints all customers for one seller
+// For debugging — prints all customers for one seller
 void printQueue(Customer queue[], int N, char sellerType, int sellerNumber)
 {
     printf("\n=== Seller %c%d Queue (N=%d) ===\n", sellerType, sellerNumber, N);
@@ -123,6 +121,10 @@ void wakeup_all_seller_threads()
 
 int main(int argc, char *argv[])
 {
+
+    int seatChart[10][10] = {0}; // 10x10 seating chart initialized to 1 (all seats available)
+    int availableSeats = 100;    // total available seats
+
     if (argc != 2)
     {
         printf("Usage: %s <number_of_customers>\n", argv[0]);
