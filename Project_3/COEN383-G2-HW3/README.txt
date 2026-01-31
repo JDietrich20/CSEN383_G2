@@ -9,6 +9,7 @@ Todo list in general:
 - void wakeup_all_seller_threads()
 - main() function steps
 
+
 */
 
 
