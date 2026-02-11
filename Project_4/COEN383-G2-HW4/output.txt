@@ -1,0 +1,322 @@
+=== Memory Management Simulation ===
+
+
+========================================
+Algorithm: FIFO
+========================================
+
+Sample output for first 100 references (Run 1):
+Time	Proc	Page	InMem	Evicted
+------------------------------------------------
+0.44	P99	Enter	17	3	l...................................................................................................
+0.44	P99	0	Yes	-
+0.54	P99	1	No	-
+0.64	P99	1	Yes	-
+0.74	P99	1	Yes	-
+0.84	P99	1	Yes	-
+0.94	P99	0	Yes	-
+1.04	P99	0	Yes	-
+1.14	P99	1	Yes	-
+1.24	P99	1	Yes	-
+1.34	P99	0	Yes	-
+1.37	P132	Enter	17	3	llI.................................................................................................
+1.37	P132	8	No	-
+1.42	P123	Enter	31	1	llII9...............................................................................................
+1.42	P123	13	No	-
+1.44	P99	1	Yes	-
+1.47	P132	9	No	-
+1.52	P123	14	No	-
+1.54	P99	0	Yes	-
+1.57	P132	10	No	-
+1.62	P123	14	Yes	-
+1.64	P99	8	No	-
+1.67	P132	10	Yes	-
+1.72	P123	15	No	-
+1.74	P99	7	No	-
+1.77	P132	11	No	-
+1.82	P123	24	No	-
+1.84	P99	4	No	-
+1.87	P73	Enter	31	3	llII99I9Il9lI9lL....................................................................................
+1.87	P132	10	Yes	-
+1.87	P73	1	No	-
+1.92	P123	23	No	-
+1.94	P99	3	No	-
+1.97	P132	9	Yes	-
+1.97	P73	12	No	-
+2.03	P123	23	Yes	-
+2.04	P99	2	No	-
+2.08	P132	8	Yes	-
+2.08	P73	13	No	-
+2.13	P123	15	Yes	-
+2.15	P99	1	Yes	-
+2.18	P132	9	Yes	-
+2.18	P73	24	No	-
+2.23	P123	3	No	-
+2.25	P99	14	No	-
+2.28	P132	1	No	-
+2.28	P73	2	No	-
+2.33	P123	3	Yes	-
+2.34	P13	Enter	11	2	llII99I9Il9lI9lLL9lLlLL9lILN........................................................................
+2.34	P13	1	No	-
+2.35	P99	7	Yes	-
+2.35	P13	3	No	-
+2.38	P38	Enter	5	3	llII99I9Il9lI9lLL9lLlLL9lILNNNm.....................................................................
+2.38	P132	0	Yes	-
+2.38	P73	3	No	-
+2.38	P38	2	No	-
+2.39	P38	1	No	-
+2.43	P123	Exit	31	1	llII..I.Il.lI.lLL.lLlLL.lILNNNmLmm..................................................................
+2.45	P99	3	Yes	-
+2.45	P13	5	No	-
+2.48	P132	11	Yes	-
+2.48	P73	2	Yes	-
+2.49	P38	4	No	-
+2.55	P99	16	No	-
+2.55	P13	5	Yes	-
+2.58	P132	9	Yes	-
+2.58	P73	2	Yes	-
+2.59	P38	2	Yes	-
+2.65	P99	11	No	-
+2.65	P13	6	No	-
+2.68	P132	10	Yes	-
+2.68	P73	2	Yes	-
+2.69	P38	2	Yes	-
+2.72	P105	Enter	17	4	llIINmIlIlllINlLLrlLlLL.lILNNNmLmm..................................................................
+2.72	P105	16	No	-
+2.73	P105	16	Yes	-
+2.75	P99	12	No	-
+2.75	P13	6	Yes	-
+2.78	P132	14	No	-
+2.78	P73	2	Yes	-
+2.79	P38	0	Yes	-
+2.83	P105	2	No	-
+2.85	P99	11	Yes	-
+2.85	P13	1	Yes	-
+2.88	P132	15	No	-
+2.88	P73	2	Yes	-
+2.89	P38	1	Yes	-
+2.93	P105	7	No	-
+2.95	P99	11	Yes	-
+2.95	P13	0	Yes	-
+2.98	P132	15	Yes	-
+2.98	P73	7	No	-
+2.99	P38	1	Yes	-
+3.03	P105	8	No	-
+3.05	P99	13	No	-
+3.05	P13	9	No	-
+3.08	P132	13	No	-
+3.08	P73	5	No	-
+3.09	P38	0	Yes	-
+3.13	P105	12	No	-
+3.15	P99	10	No	-
+3.15	P13	10	No	-
+3.18	P132	14	Yes	-
+3.18	P73	5	Yes	-
+3.19	P38	0	Yes	-
+3.23	P105	7	Yes	-
+3.25	P99	13	Yes	-
+3.25	P13	9	Yes	-
+3.45	P99	Exit	17	3	..IINmI.I...IN.LLr.L.LLr.ILNNNmLmm.IrIrLr.NILr.NrNLr................................................
+3.65	P89	Enter	11	5	ILIINmILIrb.IN.LLr.L.LLr.ILNNNmLmm.IrIrLr.NILr.NrNLr................................................
+4.35	P13	Exit	11	2	ILII.mILIrb.I.bLLrbLILLrLIL...mLmmLIrIrLrm.ILrr.r.LrLbbrL...........................................
+4.38	P132	Exit	17	3	.L..bm.L.rb...bLLrbL.LLrL.L...mLmmL.r.rLrm..Lrr.r.LrLbbrL...........................................
+4.87	P129	Enter	31	5	bLLLbmbLbrbbF.bLLrbL.LLrL.L...mLmmL.r.rLrm..Lrr.r.LrLbbrL...........................................
+4.88	P73	Exit	31	3	b...bmb.brbbFFb..rb....r......m.mm..r.r.rm...rr.r..r.bbr............................................
+4.92	P11	Enter	31	5	bL..bmb.brbbFFb..rb....r......m.mm..r.r.rm...rr.r..r.bbr............................................
+5.39	P38	Exit	5	3	bLLvb.bAbrbbFFbLvrbFLvArF888AF.L..vAr.r.r....rr.r..r.bbr............................................
+6.03	P109	Exit	5	1	bLL.bLbAbrbbFFbL.rbFL.ArF888AFFL8r.ArLrFr8LFyrryrr.rFbbryF8Ab.......................................
+6.04	P124	Exit	11	1	bLL.bLb.brbbFFbL.rbFL..rF888.FFL8r..rLrFr8LFyrryrr.rFbbryF8.b.......................................
+6.73	P105	Exit	17	4	bLLybLbFb.bbFFbLF.bFL8F.F888LFFL8.8y.L.F.8LFy..y....Fbb.yF8.b.......................................
+8.66	P89	Exit	11	5	.LLy.L.F.F..FF.LFx.FL8FxF888LFFL8F8y8LLF78LFyF7yFL7LF..LyF87.8LL8xxLx7L7............................
+9.22	P122	Exit	17	4	.LLyFLLFFFvvFFvLFx.FL.FxF...LFFL.F.y.LLF7.LFyF7yFL7LFFFLyF.7v.LL.xxLx7L77.LFFFFF77..................
+9.72	P50	Exit	5	4	7LL.FLLFFFvvFFvLFxvFLFFxFT77LFFLFFT.7LLF77LF.F7.FL7LFFFL.FF7vFLLTxxLx7L77.LFFFFF77..................
+9.88	P129	Exit	31	5	7LLFFLL.F.vv..vL.xv.LF.x.T77L..L..TT7LL.77L.7.7T.L7L.FFLT.F7vFLLTxxLx7L77.LF.FFF77..................
+9.93	P11	Exit	31	5	7..FF..vFTvvT7v.7xv..F.x.T77......TT7...77..7.7T..7..FF.T.F7vF..Txx.x7.77..F.FFF77..................
+10.21	P121	Exit	17	2	7vFFFTTvFTvvT.v77xvvTFTx7T.7MdFMTTTT.....7..7..T.....FF.T.F.vF..Txx.x......F.FFF77..................
+10.21	P59	Exit	31	1	.vFFFTTvFTvvT.v..xvvTFTx.T..MdFMTTTT...........T.....FF.T.F.vF..Txx.x......F.FFF....................
+10.98	P5	Exit	11	2	Mv..FTTvFTvvTdvvMxvvTFTxTTT5MdFMTTTT5FdvTFMdvTMTvT5Fv...T.F.v...Txx.x......F..F.....................
+11.74	P67	Exit	17	3	MvT..TTv.TvvTdvvMxvvT.TxTTT5Md.MTTTT5.dvT.MdvTMTvT5.vTT5Td.dvvMvTxx.xdv5MdV.VV.vTMMMVv5.............
+12.60	P49	Exit	5	5	MvTMVTTvvTvvTdvvM.vvTVT.TTTMMdKMTTTTdKdvTMMdvTMTvTTMvTTTTdvdvvMvT..T.dvaMdVMVVMvTMMMVvTVTKKVaaKdMvaK
+13.15	P136	Exit	17	3	.vTMVTTvvTaTTdKv.KvvTVTTTaT..dK.TTKTdKdvT..dvT.TvTTMvTTTTdvdMv.vM.TTMdva.dV.VVMvTMMMVvTVTKKVaaKdMvaK
+13.15	P91	Exit	11	3	.vTMVTTvvTaTT.Kv.KvvTVTTTaT...K.TTKT.K.vT...vT.TvTTMvTTTT.v.Mv.vM.TTM.va..V.VVMvTMMMVvTVTKKVaaK.MvaK
+13.50	P81	Exit	17	4	.v.MVT.vvTaT.MKvaKvvTV.TT..TvKKMT...VK.vT...v..Tv.TMvT.TT.v.Mv.v..T.M.va..V.VVMv.MMMVvTVTKKVaaK.MvaK
+13.78	P47	Exit	31	5	s.sMVTs..T..wM..aK..TVswT....KKMT...VK..T......T..TM.T..T...........M..a..V.VVM..MMMV..VTKKVaaK.M.aK
+13.88	P143	Exit	11	4	sasMV.swM.s.wM..aK...Vsw.....KKM....VK.............M................M..a..V.VVM..MMMV..V.KKVaaK.M.aK
+13.90	P10	Exit	17	2	sasMVaswMws.wM..a....Vsw.......M....V..............M................M..a..V.VVM..MMMV..V...Vaa..M.a.
+14.29	P26	Exit	11	2	s.sMV.swMw.swMww.ggwsVsw.......M....V..............M......................V.VVM..MMMV..V...V....M...
+14.57	P145	Exit	11	3	swsM.MswMwgswMwwwggws.swg......M...................M..........................M..MMM............M...
+16.64	P74	Exit	31	5	sws...sw.wgsw.wwwggwssswggw.sgs.gzz2222gwz00B2gzwz2.0z20gz20.gBg.z.2.B.BsyyyJJ..z...zyJgwy0zy0Jz.y0J
+17.15	P94	Exit	31	3	swsyO0swOw.swywww..wsssw..w0s.s..zz2222.wz0022.zwz200z20.z20y....z.2....syyy....z...zy..wy0zy0.z.y0.
+17.99	P51	Exit	31	3	swsy.0swywyswywww..wsssww.w0sys....2222.w.0022..w.200.20..20y......2....syyy.........y..wy0.y0...y0.
+18.55	P106	Exit	11	5	.w.yy0.wyw..wywww88w...wwyw0.y.80hh22222wh0022y8w0200h20..20y......2.....yyy.........y..wy0.y0...y0.
+18.58	P110	Exit	17	5	...yy0..y....y...88......y.0.y.80hh22222.h0022y8.0200h20..20y......2.....yyy.........y...y0.y0...y0.
+18.80	P112	Exit	31	3	.8h..0h4.4.......88........0...80hh22222.h0022.8.0200h20..20.......2......................0..0....0.
+19.23	P52	Exit	17	4	h8h48.h4G4G48Z.Zh884KK.........8.hh22222.h..22.8..2..h2...2........2................................
+20.03	P54	Exit	11	5	h8h48Zh4G4G48ZGZh884KK4KeehG4Ke88hh.....hh4K..e88i.G4h.hiZ.hiG4XiGK.e...............................
+20.24	P33	Exit	31	2	.8.48Z.4G4G48ZGZ.884KK4Kee.G4Ke88...X4WW..4Keie88iGG4.K.iZe.iG4XiGK.e...............................
+20.98	P68	Exit	31	2	X8i48ZW4.4.48Z.ZX884KK4Kee6.4Ke886i.X4WW4W4Keie88i..4XK4iZeei.4Xi.KZe6i.46i.KWX6is.siX..............
+22.13	P149	Exit	5	3	XOi6i.WQQX4i4.X.X6O4KK4Kee664Ke486iiX4WW4W4KeieX8iOW4XK4i.eeie4XiXK.e6ii46i6KWX6i4KKiXWXW4K8OOiKODeX
+22.79	P56	Exit	31	4	XOi.iDW.Q....iX.X6O..Q.6DO66.KX.O6iiX.WW.W.Qei6XDOOW.XK.iKeeie.XiXK6e6ii.6i6KWX6i.KKiXWXW.K8OOiKODeX
+23.02	P60	Exit	11	5	X.iK.DWW.....iX.X......6DO66.KX..6iiX.WW.W..ei6..OOW.XK.iKeeie.XiXK6e6ii.6i6KWX6i.KKiXWXW.K.OOiKODeX
+23.10	P84	Exit	11	3	XDiK.D.......iX.X......6DO66.KX..6iiX.......ei6..OO..XK.iKeeie.XiXK6e6ii.6i6K.X6i.KKiX.X..K.OOiKODeX
+23.31	P30	Exit	11	4	XDiK6DK6.....iX.X......6..66.K...6iiX........i...OO..XK.iK..i..XiXK6.6ii.6i6K.X6i.KKiX.X..K.OOiKOD.X
+23.94	P147	Exit	17	4	.DiK6DK6..4Oii.4.OO....6..66.K...6ii.........i...OO...K.iK..i...i.K6.6ii.6i6K..6i.KKi.....K.OOiKOD..
+24.05	P65	Exit	17	2	4.iK6.K66K4Oii446OO....6..66.K...6ii.........i...OO...K.iK..i...i.K6.6ii.6i6K..6i.KKi.....K.OOiKO...
+24.20	P134	Exit	31	5	44i.66.66.4Oi.446OOi......66.....6ii.........i...OO.....i...i...i..6.6ii.6i6...6i...i.......OOi.O...
+24.64	P118	Exit	17	1	..i.66666..Oij..6OOij.M...66.....6ii.........i...OO.....i...i...i..6.6ii.6i6...6i...i.......OOi.O...
+24.67	P34	Exit	31	5	6O...6666.......6OO.j.M...66.....6................O................6.6...6.6...6............OO..O...
+25.35	P58	Exit	31	5	.OQ.......jQ.QMO..OMj.M.OY..M.....................O.........................................OO..O...
+25.36	P14	Exit	17	4	..Q.......j..QM....Mj.M.....M.......................................................................
+28.63	P12	Exit	5	4	YYQj.YjYQYjHdQ.HjhY.jH.jnHnj.dHnjHjhnHnjjYHnjdYHjHjhhHnhH.dhHndj.ddhdYHdYhnj........................
+28.69	P16	Exit	5	4	YY...YjY.Yj.d..HjhY.jH.jnHnj.dHnjHjhnHnjjYHnjdYHjHjhhHnhH.dhHndj.ddhdYHdYhnj........................
+29.04	P69	Exit	17	3	YYhjhYjYkYj.dkj.jhYkj..jn.nj.d.nj.jhn.njjY.njdY.j.jhh.nh..dh.ndj.ddhdY.dYhnj........................
+29.35	P35	Exit	31	5	YYh..Y.Yk...d..k.hYk....n.n..d.n...hn.n..Y.n.dY....hh.nh..dh.nd..ddhdY.dYhn.........................
+29.81	P36	Exit	17	1	YYhRhYhY.RX.d.h.XhY.d...n.n..d.n...hn.n..Y.n.dY....hh.nh..dh.nd..ddhdY.dYhn.........................
+30.20	P86	Exit	11	5	..hRh.h.3.X3dXhRXh.hd3Rhn.n3XddnRhDhnDn3R..n.d.....hh.nh..dh.nd..ddhd..d.hn.........................
+30.38	P141	Exit	31	1	D3h.hXhX3.X3d.h.Xh.hd3.hn.n3Xddn.hDhnDn3...n.d.....hh.nh..dh.nd..ddhd..d.hn.........................
+30.66	P85	Exit	11	1	D3hYh.h.3Y..d.hS.hYhd3DhnSn3.ddnDhDhnDn3gg.n.d.....hh.nh..dh.nd..ddhd..d.hn.........................
+31.44	P101	Exit	11	5	D3hYhhhD3YDYdDhSghYhd3Dh...3Ddd.DhDh.D.3ggY.DdS3DDShhD.hDgdhD.dY3ddhdSgd.h.UUD......................
+31.85	P55	Exit	11	2	D.hYhhhD.YD.dDhSghYhd.DhUhD.DddYDhDhDDU.ggYDDdS.DDShhD.hDgdhDUdY.ddhdSgdDhYUUD......................
+32.30	P95	Exit	31	5	DD.Y...DYYDSdD.Sg.Y.dDD.U.DYDddYD.D.DDU.ggYDDdSKDDS..DK.Dgd.DUdYDdd.dSgdD.YUUDYSKAA.................
+32.48	P29	Exit	11	5	DDDYYDADYYDS.DDSgYYS.DD.U.DYD..YD.D.DDU.ggYDD.SKDDS..DK.Dg..DU.YD....Sg.D.YUUDYSKAA.................
+33.13	P3	Exit	17	3	.DDYY.ADYYDSD.DSgYYSYD.SUKDYDAcY.c.Y..UcggYD.cSKD.SYcDKY.g.KDUuYDuuccSgZDZYUUDYSKAAuZ...............
+33.65	P32	Exit	5	3	YDDYYDYDYYDSDYDS.YYSYDZSUKDYDScYccYYSuUc..YDZcSKD.SYcDKY...KDUuYDuuccS.ZDZYUUDYSK..uZ...............
+34.45	P18	Exit	31	4	YDDEYDYDYYD.D.D.CYY.YDZ.U.DYD.cYccYY.cUcCIYDZc.KDC.YcDKY.IIKDUCYDDccc..ZDZYUUDY.KICIZp.ppaaEYaEE.pYa
+35.39	P20	Exit	5	4	YDDEYDYDYYDpDYDuEYYuYDZp.DDYDEcYccYYlc.culYDZcDKDaEYcDKYlDlKD.oYDDcccoDZDZY..DYEKp..Zp.ppaaEYaEE.pYa
+35.43	P148	Exit	31	5	.DD..D.D..D.D.DuE..u.DZpoDD.DEc.cc..lc.cul.DZcDKDaE.cDK.lDlKD.o.DDcccoDZDZ...D.EKp..Zp.ppaaE.aEE.p.a
+35.72	P127	Exit	31	5	l..po.p.EV.V....E.....Zpo....Ec.cc..lc.c.l..Zc.K.aE.c.K.l.lK..o...ccco.Z.Z.....EKp..Zp.ppaaE.aEE.p.a
+35.72	P90	Exit	5	3	l..po.p.EV.V....E.....Zpo....Ec..c..lc...l..Z..K.aE.c.K.l.lK..o....c.o.Z.Z.....EKp..Zp.ppaaE.aEE.p.a
+36.14	P72	Exit	5	4	oEEpoopVEV.V....E.....Zpo....Ec..c...c......Z....aE.c.........o....c.o.Z.Z.....E.p..Zp.ppaaE.aEE.p.a
+36.62	P28	Exit	5	4	oEEpoopVEVEVoUUUEoVUooZpo000oE..............Z....aE...........o......o.Z.Z.....E.p..Zp.ppaaE.aEE.p.a
+36.94	P87	Exit	5	4	oEEpoop0EEEooUUUEooUoo.po000oEU0.................aE...........o......o.........E.p...p.ppaaE.aEE.p.a
+37.28	P82	Exit	31	1	oEEpoop0EEEoo...Eoo.ooopo000oE.00Ep.E.0..........aE...........o......o.........E.p...p.ppaaE.aEE.p.a
+37.30	P40	Exit	17	2	.EEp..p0EEE.....E......p.000.E.00Ep.E.0..........aE............................E.p...p.ppaaE.aEE.p.a
+37.52	P114	Exit	11	1	.EEp..p.EEE.....E......p.....E...Ep.E............aE............................E.p...p.ppaaE.aEE.p.a
+38.26	P103	Exit	11	4	EEE.OO.PEEE.P.PkEk...........E...E..E............aE............................E.........aaE.aEE...a
+39.05	P76	Exit	31	1	EEE...kPEEE.PVPkEkVVV.k.k999VE.PVEV.E............aE............................E.........aaE.aEE...a
+39.33	P88	Exit	5	5	EEEk9WkPEEEWPVPkEkVVVWkVk999VE9PVEVWEVkW..........E............................E...........E..EE....
+39.34	P4	Exit	17	5	....9WkP...WPVPk.kVVVWkVk999V.9PV.VW.VkW............................................................
+39.78	P61	Exit	31	1	VWk..WkP.WVWPVPk.kVVVWkVk...V..PV.VW.VkW............................................................
+41.10	P15	Exit	5	3	VWkWVWk.VWV..V.kkkVVVWkVkkVVVNG.VNVWGVkWNGWNGSVSGG..................................................
+41.26	P98	Exit	11	3	VW..VW.VVWVN.V....VVVW.V..VVVNG.VNVWGV.WNGWNGSVSGG..................................................
+41.94	P142	Exit	11	1	VWG.VWWVVWVNVV.G.WVVVWVV1EVVVNG1VNVWGVEWNGWNG.V.GG1E................................................
+42.76	P75	Exit	5	2	VWG1VWWVVWV.VVEGVWVVVWVV1EVVV.G1V.VWGVEW.GW.GEVGGG1EEEXX1EXGnCn5C55XEn5.............................
+42.86	P115	Exit	5	1	VWG.VWWVVWVCVVEGVWVVVWVV.EVVV5G.VVVWGVEWXGW.GEVGGG.EEEXX.EXGnCn5C55XEn5.............................
+43.12	P146	Exit	11	4	V.G.V..VV.V.VVEGV.VVV.VVCEVVV5G5VVV.GVE.XG.VGEVGGGEEEEXXVEXGnCn5C55XEn5n............................
+43.54	P21	Exit	31	5	.5G..XG..C.X..EG.5...C..CE...5G5...5G.EnXGC.GE.GGGEEEEXX.EXGnCn5C55XEn5nS...........................
+43.61	P39	Exit	5	1	S5GG.XG..C.X..EG.5...C..CE...5G5...5G.E.XGC.GE.GGGEEEEXX.EXG.C.5C55XE.5.S...........................
+44.63	P119	Exit	31	2	S.GGCXG.ECCXECEGE.XRSCRECEWSC.G.RWC.GSERXGCWGE.GGGEEEEXXREXGWCC.C..XE..RStttW.XRW...................
+44.76	P130	Exit	17	4	SS..CX.tECCXECE.E.XRSCRECEWSC...RWC..SERX.CW.E....EEEEXXREX.WCC.C..XE..RStttW.XRW...................
+45.44	P23	Exit	11	3	SSERC.ttECC.ECEREW.RSCRECEWSCRStRWCWCSER.SCWREtC.REEEE..RE.tWCCWC...E..RStttW..RW...................
+45.55	P80	Exit	11	2	..ERC.ttECCCECEREW.R.CRECEW.CR.tRWCWC.ER..CWREtC.REEEE..RE.tWCCWC...E..R.tttW..RW...................
+45.99	P22	Exit	17	2	EEERC.ttECCCECERE.tR.CRECE.PCRPtR.C.CPERERC.REtCtREEEE..RE.t.CC.C...E..R.ttt...R....................
+46.48	P45	Exit	31	2	EEERCw..ECCCECEREw.RBCRECEPPCRP.RBCBCPERERC.RE.C.REEEEPBREJ.JCCJCBJwEBRRJ...wRRR....................
+46.62	P126	Exit	17	4	EEER.wRwE...E.EREwRRB.RE.EPP.RP.RB.B.PERER..RE...REEEEPBREJ.J..J.BJwEBRRJ...wRRR....................
+46.86	P66	Exit	31	5	....wwRw.BoJ.R.R.wRRBoR.o.PPJRP.RB.B.P.R.R..R....R....PBR.J.J..J.BJw.BRRJ...wRRR....................
+46.96	P79	Exit	17	3	w...wwRw.BoJ.R...wR.Bo..o.PPJ.P..B.B.P................PB..J.J..J.BJw.B..J...wRR.....................
+47.84	P139	Exit	5	2	wJozwwRwzBoJzRJowwRBBozooH..JH.BJBoBw.HzozRwzowHJoRw...B..J.J..J.BJw.B..J...wRR.....................
+49.48	P17	Exit	11	3	wJozwY.wzBoJz.JowQ.B.ozooHzJJHoBJoowwHHzoz.wzowHJo.wJwHHJwYHJQzoQYJwoQBzoQJHw..QJHQwHQ.wBHzQJQJoQoYY
+49.69	P102	Exit	31	3	wJ.zwYYwzB.JzQJ.wQBBB.z..HzJJH.BJ..wwHHz.zBwz.wHJ.wwJwHHJwYHJQz.QYJw.QBz.QJHwY.QJHQwHQ.wBHzQJQJ.Q.YY
+50.02	P48	Exit	31	4	.JBz..Y.zB.JzQJB..BBBHz33HzJJHBBJ3...HHz.zB.z..HJ...J.HHJ.YHJQz.QYJ..QBz.QJH.Y.QJHQ.HQ..BHzQJQJ.Q.YY
+50.18	P133	Exit	31	4	H.BzYQYBzB3.zQ.BB.BBBHz33Hz..HBB.3...HHz.zB.z..H......HH...H.Qz.QY...QBz.Q.H.Y.Q.HQ.HQ..BHzQ.Q..Q.YY
+50.27	P140	Exit	17	2	HBBzY.YBzB33z..BB.BBBHz33Hz..HBB.3...HHz.zB.z..H......HH...H..z..Y....Bz...H.Y...H..H...BHz.......YY
+51.05	P1	Exit	17	5	HBBzY1YBz...z11B.GB..Hz..HzGHHB.G.1.BHHz.zB1zGBH......H....H..z........z...H.Y...H..H....Hz.......YY
+51.06	P113	Exit	11	4	HBB.Y1YB.G...11B.GB..H...H.GHHB.G.1.BHH...B1.GBH......H....H...............H.Y...H..H....H........YY
+52.06	P24	Exit	11	3	HBBB...B1GGBG11BBGB1GHB1GHGGHHB1GG1HBHHGCCB1CGBHe1eeC1HG...H...............H.....H..H....H..........
+52.25	P131	Exit	17	5	.BBBbbbB1GGBG11BBGB1G.B1G.GG..B1GG1.B..GCCB1CGB.e1eeC1..C1G.bC......................................
+52.55	P6	Exit	31	2	.BBBbbbB1..B.11BB.B1.bB1.B..1.B1..1bB1..CCB1C.B1e1eeC1e.C1..bC......................................
+53.59	P125	Exit	17	4	p...bbb.1bp.p11..C.1.b.1p.ii1i.1bp1b.1CiCC.1CU.1e1eeC1eUC1pUbCeipiUC1iU1.UpUCb......................
+53.93	P92	Exit	5	2	ppCibbbp1bpUp11xxCx1pbC1p.ii1i.1bp1b.1CiCC.1CU.1.1..C1.UC1pUbC.ipiUC1iU1.UpUCb......................
+54.52	P53	Exit	31	4	ppCib.bp.bpUp..xxCx..bC.pxii.iC.bp....CiCC..CUp.U.CiC.pUC.pUbCCipiUC.iU..UpUCb......................
+54.90	P2	Exit	31	3	pp.ibUbpxbpUpqqxx.xb.b.ipxiiqi.xbp.....i.....Up.U..i..pU..pUb..ipiU..iU..UpU.b......................
+54.99	P144	Exit	11	2	ppqib.bpxbp.pqqxx.xb.b.ipxiiqi.xbp.....i......p....i..p...p.b..ipi...i....p..b......................
+55.59	P41	Exit	17	3	..qibib.xb.q.qqxxxxb.bxi.xiiqiqxb.AAqq.i...........i........b..i.i...i.......b......................
+55.66	P42	Exit	11	1	...ibib.xb.....xxxxb.bxi.xii.i.xb.AA...i...........i........b..i.i...i.......b......................
+55.79	P111	Exit	17	2	IAIibib..b.........b.b.i..ii.i..b.AA...i...........i........b..i.i...i.......b......................
+56.33	P62	Exit	31	1	I.IibibILbLL.L.jj..b.b.i..ii.i..b......i...........i........b..i.i...i.......b......................
+57.08	P27	Exit	11	5	IjIi...IL.LLmLmjjjm.L.jimIiijiII.PP.mP6i6..........i...........i.i...i..............................
+57.84	P96	Exit	11	5	IjI.P.jILPLLmLmjjjm6LPj.mI..j.IIIPPjmP6.6P6NPNNjNIN.................................................
+58.24	P97	Exit	11	2	I.IIP..ILPLLmLm...m6LP.6mIPN.NIIIPP.mP6f6P6NPNN.NINffPN.............................................
+59.44	P100	Exit	5	3	IfIIPIPILPLL.L.H6f.6LPH6.IP6HZIIIPPP.P6f6P6ZPHfHZIIffP6ZIqq6ZrI.....................................
+59.74	P8	Exit	17	4	.f..P.P.LPLLrLq.6fr6LP.6..P6.Z...PPP.P6f6P6ZP.f.Z..ffP6Z.qq6Zr......................................
+59.81	P25	Exit	5	1	qfftP.P.LPLLrLq.6fr6LP.6..P6.....PPP.P6f6P6.P.f....ffP6..qq6.r......................................
+59.91	P77	Exit	17	3	qfft.t.rL.LLrLqf6fr6L..6...6..........6f6.6...f....ff.6..qq6.r......................................
+59.94	P135	Exit	5	4	qfft.t.r....r.qf6fr6...6...6..........6f6.6...f....ff.6..qq6.r......................................
+
+Run 1: Hits=2943, Misses=1433, Hit Ratio=0.673, Processes Swapped In=150
+Run 2: Hits=3022, Misses=1499, Hit Ratio=0.668, Processes Swapped In=150
+Run 3: Hits=3317, Misses=1426, Hit Ratio=0.699, Processes Swapped In=150
+Run 4: Hits=2801, Misses=1326, Hit Ratio=0.679, Processes Swapped In=150
+Run 5: Hits=2994, Misses=1356, Hit Ratio=0.688, Processes Swapped In=150
+
+--- FIFO Algorithm Summary ---
+Average Hit Ratio: 0.682
+Average Processes Swapped In: 150.00
+Total Hits: 15077
+Total Misses: 7040
+
+========================================
+Algorithm: LRU
+========================================
+
+Run 1: Hits=3210, Misses=1364, Hit Ratio=0.702, Processes Swapped In=150
+Run 2: Hits=3167, Misses=1409, Hit Ratio=0.692, Processes Swapped In=150
+Run 3: Hits=2957, Misses=1339, Hit Ratio=0.688, Processes Swapped In=150
+Run 4: Hits=2739, Misses=1295, Hit Ratio=0.679, Processes Swapped In=150
+Run 5: Hits=3111, Misses=1529, Hit Ratio=0.670, Processes Swapped In=150
+
+--- LRU Algorithm Summary ---
+Average Hit Ratio: 0.686
+Average Processes Swapped In: 150.00
+Total Hits: 15184
+Total Misses: 6936
+
+========================================
+Algorithm: LFU
+========================================
+
+Run 1: Hits=3231, Misses=1442, Hit Ratio=0.691, Processes Swapped In=150
+Run 2: Hits=3060, Misses=1424, Hit Ratio=0.682, Processes Swapped In=150
+Run 3: Hits=2787, Misses=1447, Hit Ratio=0.658, Processes Swapped In=150
+Run 4: Hits=2831, Misses=1346, Hit Ratio=0.678, Processes Swapped In=150
+Run 5: Hits=3054, Misses=1372, Hit Ratio=0.690, Processes Swapped In=150
+
+--- LFU Algorithm Summary ---
+Average Hit Ratio: 0.680
+Average Processes Swapped In: 150.00
+Total Hits: 14963
+Total Misses: 7031
+
+========================================
+Algorithm: MFU
+========================================
+
+Run 1: Hits=2984, Misses=1397, Hit Ratio=0.681, Processes Swapped In=150
+Run 2: Hits=2975, Misses=1386, Hit Ratio=0.682, Processes Swapped In=150
+Run 3: Hits=3146, Misses=1392, Hit Ratio=0.693, Processes Swapped In=150
+Run 4: Hits=2883, Misses=1400, Hit Ratio=0.673, Processes Swapped In=150
+Run 5: Hits=2812, Misses=1379, Hit Ratio=0.671, Processes Swapped In=150
+
+--- MFU Algorithm Summary ---
+Average Hit Ratio: 0.680
+Average Processes Swapped In: 150.00
+Total Hits: 14800
+Total Misses: 6954
+
+========================================
+Algorithm: RANDOM
+========================================
+
+Run 1: Hits=3084, Misses=1265, Hit Ratio=0.709, Processes Swapped In=150
+Run 2: Hits=3051, Misses=1345, Hit Ratio=0.694, Processes Swapped In=150
+Run 3: Hits=3239, Misses=1380, Hit Ratio=0.701, Processes Swapped In=150
+Run 4: Hits=3128, Misses=1342, Hit Ratio=0.700, Processes Swapped In=150
+Run 5: Hits=3203, Misses=1380, Hit Ratio=0.699, Processes Swapped In=150
+
+--- RANDOM Algorithm Summary ---
+Average Hit Ratio: 0.701
+Average Processes Swapped In: 150.00
+Total Hits: 15705
+Total Misses: 6712
+
+=== Simulation Complete ===

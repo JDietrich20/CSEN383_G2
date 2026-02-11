@@ -3,7 +3,10 @@
 #include <string.h>
 #include <math.h>
 #include "process.h"
-#include "simulation_utils.h"
+
+#define TOTAL_PAGES 100
+#define NUM_PROCESSES 150
+#define NUM_RUNS 5
 
 void generate_processes(Process processes[], int seed)
 {

@@ -1,6 +1,7 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
+// Process for struct
 typedef struct
 {
     int id;
@@ -14,6 +15,7 @@ typedef struct
     int pages_in_memory;
     double completion_time;
 } Process;
+
 
 typedef struct FreePageNode
 {
@@ -33,3 +35,5 @@ typedef struct PageFrame
 void generate_processes(Process processes[], int count);
 void print_processes(Process processes[], int num_processes);
 FreePageNode *init_free_list(int num_frames);
+
+#endif

@@ -5,7 +5,6 @@
 #include <time.h>
 #include "process.h"
 #include "process_utils.h"
-#include "simulation_utils.h"
 
 #define MIN_FREE_PAGES 4
 #define REFERENCE_INTERVAL 0.1 // 100 msec in seconds
@@ -50,7 +49,7 @@ int get_next_page(int current_page, int process_size)
     int next_page;
 
     if (r < 7)
-    { // 70% probability: delta = -1, 0, or +1
+    {                                 // 70% probability: delta = -1, 0, or +1
         int delta = (rand() % 3) - 1; // -1, 0, or 1
         next_page = current_page + delta;
 
@@ -174,9 +173,12 @@ int find_victim_page(ReplacementAlgo algo, double current_time)
     return victim;
 }
 
-// Print memory map
+// Print memory map A, B, C,... a, b, c,... 1, 2, 3,...
 void print_memory_map(Process processes[], int num_processes)
 {
+    char symbols[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    int symbol_count = 62;
+
     for (int i = 0; i < TOTAL_PAGES; i++)
     {
         if (memory[i].process_id == -1)
@@ -185,20 +187,7 @@ void print_memory_map(Process processes[], int num_processes)
         }
         else
         {
-            // Use single character from process name
-            int proc_id = memory[i].process_id;
-            if (proc_id < 10)
-            {
-                printf("%d", proc_id);
-            }
-            else if (proc_id < 36)
-            {
-                printf("%c", 'A' + (proc_id - 10));
-            }
-            else
-            {
-                printf("*");
-            }
+            printf("%c", symbols[memory[i].process_id % symbol_count]);
         }
     }
 }
@@ -292,6 +281,7 @@ void simulate(Process processes[], ReplacementAlgo algo, Statistics *stats, int 
             {
                 running_processes[num_running++] = next_process_idx;
                 stats->processes_swapped_in++;
+                next_process_idx++;
 
                 if (print_details && stats->processes_swapped_in <= 10)
                 {
@@ -301,7 +291,10 @@ void simulate(Process processes[], ReplacementAlgo algo, Statistics *stats, int 
                     printf("\n");
                 }
             }
-            next_process_idx++;
+            else
+            {
+                break;
+            }
         }
 
         // Process memory references for running processes
