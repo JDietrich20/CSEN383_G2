@@ -308,7 +308,6 @@ void simulate(Process processes[], ReplacementAlgo algo, Statistics *stats, int 
             {
                 proc->completion_time = current_time;
                 deallocate_process_pages(proc);
-
                 if (print_details && i < 5)
                 {
                     printf("%.2f\t%s\tExit\t%d\t%d\t", current_time, proc->name,
@@ -350,9 +349,8 @@ void simulate(Process processes[], ReplacementAlgo algo, Statistics *stats, int 
                         reference_count++;
                     }
                 }
-                else
+                else // Miss
                 {
-                    // Miss
                     stats->misses++;
 
                     // Find free frame or victim
@@ -386,7 +384,7 @@ void simulate(Process processes[], ReplacementAlgo algo, Statistics *stats, int 
                             }
                         }
                     }
-                    else
+                    else // Found free frame
                     {
                         free_page_count--;
                     }
@@ -403,7 +401,7 @@ void simulate(Process processes[], ReplacementAlgo algo, Statistics *stats, int 
                         proc->page_table[next_page] = victim_frame;
                         proc->pages_in_memory++;
 
-                        if (print_details && reference_count < 100)
+                        if (print_details && reference_count < 100) // Print details for first 100 references
                         {
                             if (victim_proc_id != -1)
                             {
@@ -441,7 +439,7 @@ int main()
         int total_misses = 0;
         int total_swapped_in = 0;
 
-        for (int run = 0; run < NUM_RUNS; run++)
+        for (int run = 0; run < NUM_RUNS; run++) // 5 runs per algorithm
         {
             Process processes[NUM_PROCESSES];
             generate_processes(processes, 1000 + run * 100 + algo * 500);
@@ -456,7 +454,7 @@ int main()
                 printf("------------------------------------------------\n");
             }
 
-            simulate(processes, algo, &stats, run, print_details);
+            simulate(processes, algo, &stats, run, print_details); // Run simulation
 
             total_hits += stats.hits;
             total_misses += stats.misses;

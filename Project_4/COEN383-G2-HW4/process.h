@@ -16,13 +16,14 @@ typedef struct
     double completion_time;
 } Process;
 
-
+// Node for free page linked list
 typedef struct FreePageNode
 {
     int frame_number;
     struct FreePageNode *next;
 } FreePageNode;
 
+// Page frame struct for memory
 typedef struct PageFrame
 {
     int process_id;
@@ -32,6 +33,7 @@ typedef struct PageFrame
     double load_time;
 } PageFrame;
 
+// Function prototypes
 void generate_processes(Process processes[], int count);
 void print_processes(Process processes[], int num_processes);
 FreePageNode *init_free_list(int num_frames);

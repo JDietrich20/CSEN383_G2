@@ -66,23 +66,25 @@ void print_processes(Process processes[], int num_processes)
     }
 }
 
+// Initialize free page list
 FreePageNode *init_free_list(int num_frames)
 {
     FreePageNode *head = NULL;
     FreePageNode *tail = NULL;
 
+    // Create linked list of free pages
     for (int i = 0; i < num_frames; i++)
     {
         FreePageNode *node = (FreePageNode *)malloc(sizeof(FreePageNode));
         node->frame_number = i;
         node->next = NULL;
 
-        if (head == NULL)
+        if (head == NULL) // First node
         {
             head = node;
             tail = node;
         }
-        else
+        else // Append to end of list
         {
             tail->next = node;
             tail = node;
